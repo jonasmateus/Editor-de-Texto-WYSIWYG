@@ -1,0 +1,79 @@
+body {
+
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 100px;
+    background: #70e1f5;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #ffd194, #70e1f5);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #ffd194, #70e1f5); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+.editor-window-container {
+
+    display: flex;
+    flex-direction: column;
+    width: 50em;
+    align-items: center;
+    padding: 10px;
+    background-color: rgb(177, 156, 217, 0.7);
+    border-radius: 5px;
+    
+}
+
+/* Tool bar */
+.editor-window-container .tool-bar-section {
+
+    width: inherit;
+
+}
+
+.editor-window-container .tool-bar-section div {
+
+    display: flex;
+    justify-content: space-between;
+
+}
+.editor-window-container .tool-bar-section button{
+    margin: 0 1px 0 1px;
+}
+
+
+button, .text-titles, select {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 45px;
+    cursor: pointer;
+
+}
+
+select {
+    background-color: rgb(239, 239, 239);
+    border-radius: 3px;
+}
+
+/* Text Area */
+pre {
+    
+    width: inherit;
+    height: 40em;
+    margin-top: 6px;
+    white-space: normal;
+    overflow-y: scroll;
+    background-color: white;
+    border-radius: 5px;
+    font-family: 'Raleway', sans-serif;
+    outline: none;
+    
+
+}
+
+/* hr para ser acrescentado como uma funcionalidade textual */
+hr {
+    width: 40em;
+
+}
