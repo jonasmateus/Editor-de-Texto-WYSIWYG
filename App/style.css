@@ -59,21 +59,25 @@ select {
 /* Text Area */
 pre {
     
+    height: 35em;
     width: inherit;
-    height: 40em;
     margin-top: 6px;
     white-space: normal;
     overflow-y: scroll;
     background-color: white;
+    border: none;
     border-radius: 5px;
     font-family: 'Raleway', sans-serif;
     outline: none;
     
-
 }
+
+
 
 /* hr para ser acrescentado como uma funcionalidade textual */
 hr {
     width: 40em;
 
 }
+
+

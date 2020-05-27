@@ -11,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400&display=swap" rel="stylesheet">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
 
 </head>
 <body>
@@ -25,12 +26,12 @@
 
                     <select name="titles" id="">
 
-                        <option value="">  H1  </option>
-                        <option value="">  H2  </option>
-                        <option value="">  H3  </option>
-                        <option value="">  H4  </option>
-                        <option value="">  H5  </option>
-                        <option value="">  H6  </option>
+                        <option value="h1">  H1  </option>
+                        <option value="h2">  H2  </option>
+                        <option value="h3">  H3  </option>
+                        <option value="h4">  H4  </option>
+                        <option value="h5">  H5  </option>
+                        <option value="h6">  H6  </option>
 
                     </select>
 
@@ -82,7 +83,15 @@
                     <div class="highlight"> 
 
                         <button class="highlight-button">
-                            <img src="../ImagesForIcons/1x/round_create_black_18dp.png" alt="" srcset="">    
+                            <img src="../ImagesForIcons/1x/round_font_heighlight_18dp.png" alt="" srcset="">    
+                        </button>
+
+                    </div>
+
+                    <div class="font-color">
+
+                        <button class="font-color-button">
+                            <img src="../ImagesForIcons/1x/round_font_color_18dp.png" alt="">
                         </button>
 
                     </div>
@@ -178,16 +187,12 @@
 
         </div>
 
-                <pre class="editor-text-content" contenteditable="true" spellcheck="true" lang="pt" >
-                    <h1>Título</h1>
-                    <hr>
-                    <h2>Título</h2>
-                    <h3>Título</h3>
+                <pre id="editor" class="editor-text-content" contenteditable="true"  spellcheck="true" lang="pt" >
+                
                 </pre>
 
     </div>
 
     <script src="./index.js"></script>
-
 </body>
 </html>
