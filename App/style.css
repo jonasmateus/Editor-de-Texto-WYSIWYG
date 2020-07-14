@@ -57,7 +57,7 @@ select {
 }
 
 /* Text Area */
-pre {
+iframe {
     
     height: 35em;
     width: inherit;
@@ -72,12 +72,24 @@ pre {
     
 }
 
+a {
+    text-decoration: none;
+}
 
+#editor >  html > blockquote {
+
+    margin-left: 30px;
+    padding: 10px;
+    text-align:start;
+    background-color: lightgray;
+    font-size: 20px;
+    border-left: solid  dodgerblue;
+
+}
 
 /* hr para ser acrescentado como uma funcionalidade textual */
 hr {
     width: 40em;
-
 }
 
 
