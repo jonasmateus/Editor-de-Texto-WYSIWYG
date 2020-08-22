@@ -1,9 +1,10 @@
 
 
-    const  typingArea = document.querySelector('#editor')
-    const  editorContext = typingArea.contentDocument
-    editorContext.designMode = 'on'    
-        
+    const typingArea = $('#editor')
+    const editorContext = typingArea[0].contentDocument
+    editorContext.designMode = 'on'
+    
+    console.log(typingArea)
 
     $(editorContext).ready( function (){
 
@@ -11,28 +12,31 @@
         const selectionTag = titleButton[0]
         const editableArea = editorContext.body
         selectionTag.onchange = (event) => inspectUserSelection(event)
-
+        console.log(selectionTag)
     
        
         function inspectUserSelection (event) {
             
             const elementSign = event.target.value
+            let selectedPosition = editorContext.getSelection()
 
+            console.log(selectedPosition)
             editableArea.onmouseup = () => {
-                applyElementWithSign(elementSign)
+                applyElementWithSign(elementSign, selectedPosition)
             }
+        
         }
         
-        function applyElementWithSign (elementSing) {
+        function applyElementWithSign (sing,position) {
 
-            let element = document.createElement(`${elementSing}`)
-            let selectedPosition = editorContext.getSelection()
+            let element = document.createElement(`${sing}`)
             let range = new Range()
             element.innerHTML = range.extractContents()
-            range.setStart(selectedPosition.anchorNode, selectedPosition.anchorOffset)
-            range.setEnd(selectedPosition.focusNode, selectedPosition.focusOffset)
+            range.setStart(position.anchorNode, position.anchorOffset)
+            range.setEnd(position.focusNode, position.focusOffset)
             range.surroundContents(element)
-
+            position.removeRange(range)
+            console.log(range)
         }
 
         const boldButton = $('div.bold > button')
@@ -40,7 +44,7 @@
         const italicButton = $('div.italic > button')
         const styledQuotesButton = $('div.quotes > button')
         const stikeButton = $('div.strike > button')
-        const heiglightButton = $('div.highlight > button')
+        const heightLight = $('div.highlight > button')
         const fontColorButton = $('div.font-color > button')
     
         const leftTextAlignButton =  $('div.left-text-align > button')
@@ -68,14 +72,14 @@
     
         stikeButton.click( event => { editorContext.execCommand('strikeThrough', false, null) } )
     
-        heiglightButton.click( event => {
+        heightLight.click( event => {
             
-            const color = prompt('Type a color: ').toString()
+            const color = window.prompt('Type a color: ').toString()
             editorContext.execCommand('hiliteColor', false, color) } )
     
         fontColorButton.click( event => {
     
-            const fontColor = prompt('Type the font color: ').toString()
+            const fontColor = window.prompt('Type the font color: ').toString()
             editorContext.execCommand('forecolor', false, fontColor)
             
         })
@@ -89,13 +93,13 @@
         bulletListButton.click( event => { editorContext.execCommand('insertUnorderedList', false) } )
         linkButton.click( event => {
     
-            const url = prompt('Type the URL: ').toString()
+            const url = window.prompt('Type the URL: ').toString()
             editorContext.execCommand('createLink', false, url).valueOf(this[0])
     
         })
         imageButton.click( event => {
     
-            const url = prompt('Type an URL for image: ').toString()
+            const url = window.prompt('Type an URL for image: ').toString()
             editorContext.execCommand('insertImage', false, url)
     
          })
