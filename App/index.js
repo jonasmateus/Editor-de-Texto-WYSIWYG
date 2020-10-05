@@ -4,39 +4,30 @@
     const editorContext = typingArea[0].contentDocument
     editorContext.designMode = 'on'
     
-    console.log(typingArea)
-
     $(editorContext).ready( function (){
 
         const titleButton = $('body > div > div > div > div.text-titles-container > select')
         const selectionTag = titleButton[0]
-        const editableArea = editorContext.body
         selectionTag.onchange = (event) => inspectUserSelection(event)
         console.log(selectionTag)
     
-       
         function inspectUserSelection (event) {
             
             const elementSign = event.target.value
-            let selectedPosition = editorContext.getSelection()
-
-            console.log(selectedPosition)
-            editableArea.onmouseup = () => {
-                applyElementWithSign(elementSign, selectedPosition)
-            }
-        
+            const selectedPosition = editorContext.getSelection()
+            editorContext.onmouseup = ( ) => applyElementWithSign(elementSign, selectedPosition)
+            
         }
+
         
         function applyElementWithSign (sing,position) {
 
             let element = document.createElement(`${sing}`)
             let range = new Range()
-            element.innerHTML = range.extractContents()
             range.setStart(position.anchorNode, position.anchorOffset)
             range.setEnd(position.focusNode, position.focusOffset)
             range.surroundContents(element)
-            position.removeRange(range)
-            console.log(range)
+            
         }
 
         const boldButton = $('div.bold > button')
@@ -97,6 +88,7 @@
             editorContext.execCommand('createLink', false, url).valueOf(this[0])
     
         })
+
         imageButton.click( event => {
     
             const url = window.prompt('Type an URL for image: ').toString()

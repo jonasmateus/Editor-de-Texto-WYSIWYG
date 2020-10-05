@@ -77,7 +77,7 @@ a {
     text-decoration: none;
 }
 
-#editor >  html > blockquote {
+body > blockquote {
 
     margin-left: 30px;
     padding: 10px;
