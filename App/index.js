@@ -1,40 +1,34 @@
-
     const typingArea = $('#editor')
     const editorContext = typingArea[0].contentDocument
     editorContext.designMode = 'on'
     editorContext.body.style.fontFamily = "Arial, sans-serif"
 
-    const titleButton = $('body > div > div > div > div.text-titles-container > select')
-    const selectionTag = titleButton[0]
-    const boldButton = $('div.bold > button')
-    const underlineButton = $('div.underline > button')
-    const italicButton = $('div.italic > button')
-    const styledQuotesButton = $('div.quotes > button')
-    const stikeButton = $('div.strike > button')
-    const heightLight = $('div.highlight > button')
-    const fontColorButton = $('div.font-color > button')
-    const leftTextAlignButton =  $('div.left-text-align > button')
-    const rightTextAlignButton = $('div.right-text-align > button')
-    const centerTextAlignButton = $('div.center-text-align > button')
-    const justifiedTextButton = $('div.justify-text-align > button')
-    const numberedListButton = $('div.numbers-list > button')
-    const bulletListButton = $('div.lines-bullets > button')
-    const imageButton = $('div.add-img > button')
-    const linkButton = $('div.add-link > button')
-    const dowloadButton = $('div.download > button')
-
     $(editorContext).ready( function (){
+	const typingArea = $('#editor')
+    	const editorContext = typingArea[0].contentDocument
+    	editorContext.designMode = 'on'
+    	editorContext.body.style.fontFamily = "Arial, sans-serif"
 
-        enableStylingFeatures()
-        enableFormatingFeatures()
-        enableOrdeningFeatures()
-        enableExtraFeatures()
+        enableStylingFeatures(editorContext)
+        enableFormatingFeatures(editorContext)
+        enableOrdeningFeatures(editorContext)
+        enableExtraFeatures(editorContext)
 
     })
 
-    function enableStylingFeatures() {
+    function enableStylingFeatures(editorContext) {
 
-        selectionTag.onchange = (event) => inspectUserSelection(event)    
+    	const titleButton = $('body > div > div > div > div.text-titles-container > select')
+	const selectionTag = titleButton[0]
+    	const boldButton = $('div.bold > button')
+    	const underlineButton = $('div.underline > button')
+    	const italicButton = $('div.italic > button')
+    	const styledQuotesButton = $('div.quotes > button')
+    	const stikeButton = $('div.strike > button')
+    	const heightLight = $('div.highlight > button')
+    	const fontColorButton = $('div.font-color > button')
+    
+        selectionTag.onchange = (event) => inspectUserSelection(event, editorContext)
         boldButton.click ( event => {  editorContext.execCommand('bold', false, null) } )
         underlineButton.click ( event => {  editorContext.execCommand('underline', false, null) } )
         italicButton.click ( event => { editorContext.execCommand('italic', false, null) } ) 
@@ -61,11 +55,10 @@
 
     }
 
-    function inspectUserSelection (event) {
-            
+    function inspectUserSelection (event, editorContext) {
+           
         const elementSign = event.target.value
         const selectedPosition = editorContext.getSelection()
-        console.log(selectedPosition)
         applyElementWithSign(elementSign, selectedPosition)
         
     }
@@ -80,8 +73,13 @@
  
     }
 
-    function enableFormatingFeatures() {
+    function enableFormatingFeatures(editorContext) {
 
+     	const leftTextAlignButton =  $('div.left-text-align > button')
+    	const rightTextAlignButton = $('div.right-text-align > button')
+    	const centerTextAlignButton = $('div.center-text-align > button')
+    	const justifiedTextButton = $('div.justify-text-align > button')
+ 
         leftTextAlignButton.click( event => { editorContext.execCommand('justifyLeft', false) } )
         rightTextAlignButton.click( event => { editorContext.execCommand('justifyRight', false) } )
         centerTextAlignButton.click( event => { editorContext.execCommand('justifyCenter', false) } )
@@ -89,14 +87,21 @@
 
     }
 
-    function enableOrdeningFeatures() {
+    function enableOrdeningFeatures(editorContext) {
 
+    	const numberedListButton = $('div.numbers-list > button')
+    	const bulletListButton = $('div.lines-bullets > button')
+ 
         numberedListButton.click( event => { editorContext.execCommand('insertOrderedList', false) } )
         bulletListButton.click( event => { editorContext.execCommand('insertUnorderedList', false) } )
 
     }
 
-    function enableExtraFeatures() {
+    function enableExtraFeatures(editorContext) {
+
+     	const imageButton = $('div.add-img > button')
+    	const linkButton = $('div.add-link > button')
+    	const dowloadButton = $('div.download > button')
 
         linkButton.click( event => {
     
