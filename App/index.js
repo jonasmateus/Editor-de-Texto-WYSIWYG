@@ -29,8 +29,10 @@ function enableStylingFeatures(editorContext) {
   const fontColorButton = $("div.font-color > button");
 
   selectionTag.onchange = (event) => inspectUserSelection(event, editorContext);
-  boldButton.click(() => {
-    editorContext.execCommand("bold", false, null);
+  boldButton.click((event) => {
+    console.log(event.target.parentElement.value);
+    inspectUserSelection(event, editorContext);
+    //editorContext.execCommand("bold", false, null);
   });
   underlineButton.click(() => {
     editorContext.execCommand("underline", false, null);
@@ -60,17 +62,23 @@ function enableStylingFeatures(editorContext) {
 }
 
 function inspectUserSelection(event, editorContext) {
-  const elementSign = event.target.value;
+  const tagName = event.target.value;
   const selectedPosition = editorContext.getSelection();
-  applyElementWithSign(elementSign, selectedPosition);
+  applyTagOnPosition(selectedPosition, tagName);
 }
 
-function applyElementWithSign(sing, position) {
-  let element = document.createElement(`${sing}`);
+function applyTagOnPosition(position, tag) {
+  let element = document.createElement("B");
+  console.log(tag);
   let range = new Range();
+
   range.setStart(position.anchorNode, position.anchorOffset);
   range.setEnd(position.focusNode, position.focusOffset);
-  range.surroundContents(element);
+
+  let textContent = range.extractContents().textContent;
+
+  element.appendChild(document.createTextNode(textContent));
+  range.insertNode(element);
 }
 
 function enableFormatingFeatures(editorContext) {
